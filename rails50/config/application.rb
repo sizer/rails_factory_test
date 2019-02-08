@@ -8,8 +8,11 @@ Bundler.require(*Rails.groups)
 
 module Rails50
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixture: true,
+                       fixture_replacement: :factory_bot
+      g.factory_bot dir: 'spec/factories'
+    end
   end
 end

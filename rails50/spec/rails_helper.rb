@@ -58,4 +58,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # FactoryBot
+  require 'factory_bot'
+  config.include FactoryBot::Syntax::Methods
+  FactoryBot::SyntaxRunner.class_eval { include ActionDispatch::TestProcess }
+  config.before(:all) do
+    FactoryBot.reload
+  end
 end
